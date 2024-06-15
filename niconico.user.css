@@ -1,0 +1,282 @@
+/* ==UserStyle==
+@name           Style for niconico (Re:仮)
+@namespace      Igusy
+@version        0.1.0
+@description    Dark-based style for niconico動画 (Re:仮)
+@author         Igusy
+@preprocessor   stylus
+
+@var checkbox userColor           "Use custom color"              0
+@var color colorBackground        "　Background"                    #121212
+@var color colorText              "　Text color"                    #c2c2c2
+@var color secondColorBackground  "　Secondary Background"                  #1d1d1d
+@var color secondColorText        "　Secondary Text color"                  #858585
+@var range iconInvertPercentage   "　Icon color inversion rate"   [93, 0, 100, 1, '%']
+@var range logoInvertPercentage   "　Logo color inversion rate"   [80, 0, 100, 1, '%']
+
+@var color loadingColorBackground "　Reload video list background"  #00000036
+
+@var color seekColorProgress      "　Seek bar progress"             #e2e2e2
+@var color seekColorBuffer        "　Seek bar buffer"               #767676
+@var color seekColorBackground    "　Seek bar background"           #121212
+@var color colorVolumeOver        "　Volume control bar"            #c2c2c2
+@var color colorVolumeBackgorund  "　Volume control bar background" #555
+
+@var color colorTagBorder         "　Video tag border color"              #252525
+@var color colorButton            "　Buttons"                       #484848
+
+
+@var color colorLink              "　Link Color" #c2c2c2
+@var checkbox underlineLink       "　Underline link" 1
+@var checkbox hoverUnderlineLink  "　Underline link when hover" 0
+@var checkbox darkScrollbar       "　Dark Scrollbar" 1
+==/UserStyle== */
+
+@-moz-document url-prefix("https://www.nicovideo.jp/"), url-prefix("https://resource.video.nimg.jp/web/scripts/tsurikkuma/") {
+    
+    :root{
+        --ColorBackground: #121212;
+        --ColorText: #c2c2c2;
+        --SecondColorBackground: #1d1d1d;
+        --SecondColorText: #858585;
+
+        --ColorTagBorder: #252525;
+
+        --SeekColorBackground: #121212;
+        --SeekColorProgress: #e2e2e2;
+        --SeekColorBuffer: #767676;
+        
+        --ColorLink: #c2c2c2;
+        --ColorButton: #484848;
+        
+        --ColorVolumeBackgorund: #555;
+        --ColorVolumeOver: #c2c2c2;
+        
+        --LoadingColorBackground:#00000036;
+    }
+    
+    
+    if userColor {
+        
+        body {
+            background: colorBackground !important;
+            color : colorText !important;
+        }
+        
+        if darkScrollbar{
+            :root{
+                color-scheme: dark;/**/
+            }
+        }
+        
+        if underlineLink{
+            .text_\\#007cff,.text_\\#0969da {
+                text-decoration: underline;
+            }
+        }
+        else{
+            .text_\\#007cff,.text_\\#0969da {
+                text-decoration: none;
+            }
+        }
+        if hoverUnderlineLink{
+            .text_\\#007cff:hover,.text_\\#0969da:hover {
+                text-decoration: underline;
+            }
+        }
+        else{
+            .text_\\#007cff:hover,.text_\\#0969da:hover {
+                text-decoration: none;
+            }
+        }
+        
+        /* Link color */
+        .text_\\#007cff,.text_\\#0969da {
+            color: colorLink;/**/
+        }
+        .text_\\#007cff:hover,.text_\\#0969da:hover {
+            color: colorLink;/**/
+        }
+        
+        /* header */
+        img.w_28px.h_28px.bg_\\#eaeaea{
+            filter: invert(iconInvertPercentage) !important;
+        }
+        header .d_flex.items_center.gap_16px svg{
+            filter: invert(logoInvertPercentage) !important;
+        }
+        
+        /* Background of "ニコニコ動画はサイバー攻撃の影響で縮小営業中です。"*/
+        .bg_\\#efefef {
+            background: secondColorBackground !important;
+        }
+    
+        /* Color of text 666 class */
+        .text_\\#666 {
+            color: secondColorText !important;
+        }
+        
+        /* #fff */
+        .bg_\\#fff{
+            background: colorBackground !important;
+        }
+        /* Tag border color */
+        .border_\\#d0d0d0_solid_1px{
+            border: colorTagBorder solid 1px !important;
+        }
+        
+        /* Seek Bar */
+        .pos_relative.h_4px.bg_\\#333.cursor_pointer{
+            background: seekColorBackground !important;
+        }
+        .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#fff{
+            background: seekColorBuffer !important;
+            opacity: 0.5 !important;
+        }
+        .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#007cff{
+            background: seekColorProgress !important;
+        }
+        
+        /* Button bule color */
+        .bg_\\#007cff{
+            background: colorButton !important;
+        }
+        /* Volume slider */
+        .bg_\\#555{
+            background: colorVolumeBackgorund !important;
+        }
+        .bg_\\#555>.bg_\\#007cff{
+            background: colorVolumeOver !important;
+        }
+        
+        /* Loading */
+        .pos_absolute.inset_0.rounded_8px{
+            background: loadingColorBackground !important;
+        }
+        .w_48px.h_48px.animation_spin{
+            border-top-color: colorText !important;
+        } 
+    }
+    else{
+        :root{
+            color-scheme: dark;/**/
+        }
+        
+        body {
+            background: var(--ColorBackground) !important;
+            color : var(--ColorText) !important;
+        }
+        
+        /* Link color */
+        .text_\\#007cff,.text_\\#0969da {
+            color: var(--ColorLink);/**/
+            text-decoration: underline;
+        }
+        .text_\\#007cff:hover,.text_\\#0969da:hover {
+            color: var(--ColorLink);/**/
+            text-decoration: none;
+        }
+        
+        /* header */
+        img.w_28px.h_28px.bg_\\#eaeaea{
+            filter: invert(93%) !important;
+        }
+        header .d_flex.items_center.gap_16px svg{
+            filter: invert(80%) !important;
+        }
+        
+        /* Background of "ニコニコ動画はサイバー攻撃の影響で縮小営業中です。"*/
+        .bg_\\#efefef {
+            background: var(--SecondColorBackground) !important;
+        }
+    
+        /* Color of text 666 class */
+        .text_\\#666 {
+            color: var(--SecondColorText) !important;
+        }
+        /* Color of text #333 */
+        .text_\\#333{
+            color: var(--ColorText) !important;
+        }
+        
+        /* #fff */
+        .bg_\\#fff{
+            background: var(--ColorBackground) !important;
+        }
+        /* Tag border color */
+        .border_\\#d0d0d0_solid_1px{
+            border: var(--ColorTagBorder) solid 1px !important;
+        }
+        /* Seek Bar */
+        .pos_relative.h_4px.bg_\\#333.cursor_pointer{
+            background: var(--SeekColorBackground) !important;
+        }
+        .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#fff{
+            background: var(--SeekColorBuffer) !important;
+            opacity: 0.5 !important;
+        }
+        .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#007cff{
+            background: var(--SeekColorProgress) !important;
+        }
+        
+        /* Button bule color */
+        .bg_\\#007cff{
+            background: var(--ColorButton) !important;
+        }
+        /* Volume slider */
+        .bg_\\#555{
+            background: var(--ColorVolumeBackgorund) !important;
+        }
+        .bg_\\#555>.bg_\\#007cff{
+            background: var(--ColorVolumeOver) !important;
+        }
+        
+        /* Loading */
+        .pos_absolute.inset_0.rounded_8px{
+            background: var(--LoadingColorBackground) !important;
+        }
+        .w_48px.h_48px.animation_spin{
+            border-top-color: var(--ColorText) !important;
+        }
+    
+    }  
+    
+}
+
+@-moz-document url-prefix("https://www.nicovideo.jp/term.html") {
+    if userColor{
+        if underlineLink{
+            a:-webkit-any-link {
+                text-decoration: underline;
+            }
+        }
+        else{
+            a:-webkit-any-link {
+                text-decoration: none;
+            }
+        }
+        if hoverUnderlineLink{
+            a:-webkit-any-link:hover {
+                text-decoration: underline;
+            }
+        }
+        else{
+            a:-webkit-any-link:hover {
+                text-decoration: none;
+            }
+        }
+        
+        a:-webkit-any-link{
+            color: colorLink;/**/
+        }
+    }
+    else {
+        a:-webkit-any-link {
+            color: var(--ColorLink);/**/
+            text-decoration: underline;
+        }
+        a:-webkit-any-link:hover {
+            text-decoration: none;
+        }
+    }
+}
