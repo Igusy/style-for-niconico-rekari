@@ -5,3 +5,5 @@ https://raw.githubusercontent.com/Igusy/style-for-niconico-rekari/master/niconic
 
 Screenshot:
 ![alt text](images/screenshot.png "Title")
+
+Enabling the "Use custom color" style option activates the custom color option.
