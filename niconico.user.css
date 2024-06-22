@@ -11,16 +11,21 @@
 @var color colorText              "　Text color"                    #c2c2c2
 @var color secondColorBackground  "　Secondary Background"                  #1d1d1d
 @var color secondColorText        "　Secondary Text color"                  #858585
+
+@var color colorBorder            "　Border color"                #676767
+@var range thicknessBorder        "　Border Thickness"            [1, 0, 2, 1, 'px']
+
 @var range iconInvertPercentage   "　Icon color inversion rate"   [93, 0, 100, 1, '%']
 @var range logoInvertPercentage   "　Logo color inversion rate"   [80, 0, 100, 1, '%']
 
 @var color loadingColorBackground "　Reload video list background"  #00000036
 
 @var color seekColorProgress      "　Seek bar progress"             #e2e2e2
-@var color seekColorBuffer        "　Seek bar buffer"               #767676
+@var color seekColorBuffer        "　Seek bar buffer"               #353535
 @var color seekColorBackground    "　Seek bar background"           #121212
 @var color colorVolumeOver        "　Volume control bar"            #c2c2c2
 @var color colorVolumeBackgorund  "　Volume control bar background" #555
+
 
 @var color colorTagBorder         "　Video tag border color"              #252525
 @var color colorButton            "　Buttons"                       #484848
@@ -30,9 +35,16 @@
 @var checkbox underlineLink       "　Underline link" 1
 @var checkbox hoverUnderlineLink  "　Underline link when hover" 0
 @var checkbox darkScrollbar       "　Dark Scrollbar" 1
+
+@var range livePlayerImageInvert  "　Live player banner image inversion" [90, 0, 100, 1, '%']
+
+@var color nicoftSecondColorBackground  "　NicoFT BG Color 2"        #1a1a1a
+@var color nicoftSecondColorText        "　NicoFT Text Color 2"      #9c9c9c
+@var color nicoftThirdColorText         "　NicoFT Text Color 3"      #7d7d7d
+
 ==/UserStyle== */
 
-@-moz-document url-prefix("https://www.nicovideo.jp/"), url-prefix("https://resource.video.nimg.jp/web/scripts/tsurikkuma/") {
+@-moz-document url-prefix("https://www.nicovideo.jp/"), url-prefix("https://resource.video.nimg.jp/web/scripts/tsurikkuma/"){
     
     :root{
         --ColorBackground: #121212;
@@ -41,10 +53,11 @@
         --SecondColorText: #858585;
 
         --ColorTagBorder: #252525;
+        --ColorBorder : #676767;
 
         --SeekColorBackground: #121212;
         --SeekColorProgress: #e2e2e2;
-        --SeekColorBuffer: #767676;
+        --SeekColorBuffer: #353535;
         
         --ColorLink: #c2c2c2;
         --ColorButton: #484848;
@@ -98,12 +111,28 @@
             color: colorLink;/**/
         }
         
-        /* header */
+        /* header icon logo*/
         img.w_28px.h_28px.bg_\\#eaeaea{
             filter: invert(iconInvertPercentage) !important;
         }
-        header .d_flex.items_center.gap_16px svg{
+        header .d_flex.items_center.gap_16px svg, svg.w_250px{
             filter: invert(logoInvertPercentage) !important;
+        }
+        
+
+         /* footer icons */
+        .border_1px_solid_\\#dadada{
+            border: 1px solid colorBackground !important;
+        }
+        
+        /* 300px image */
+        img.w_300px{
+            filter: brightness(85%) !important;
+        }
+        
+        /* 2px border */
+        .border_2px_solid_\\#e5e5e5{
+            border: thicknessBorder solid colorBorder !important;
         }
         
         /* Background of "ニコニコ動画はサイバー攻撃の影響で縮小営業中です。"*/
@@ -131,13 +160,13 @@
         }
         .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#fff{
             background: seekColorBuffer !important;
-            opacity: 0.5 !important;
+            opacity: 1.0 !important;
         }
         .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#007cff{
             background: seekColorProgress !important;
         }
         
-        /* Button bule color */
+        /* Button blue color */
         .bg_\\#007cff{
             background: colorButton !important;
         }
@@ -177,12 +206,27 @@
             text-decoration: none;
         }
         
-        /* header */
+        /* header icon logo*/
         img.w_28px.h_28px.bg_\\#eaeaea{
             filter: invert(93%) !important;
         }
-        header .d_flex.items_center.gap_16px svg{
+        header .d_flex.items_center.gap_16px svg, svg.w_250px{
             filter: invert(80%) !important;
+        }
+        
+        /* footer icons */
+        .border_1px_solid_\\#dadada{
+            border: 1px solid var(--ColorBackground) !important;
+        }
+        
+        /* 300px image */
+        img.w_300px{
+            filter: brightness(85%) !important;
+        }
+        
+        /* 2px border */
+        .border_2px_solid_\\#e5e5e5{
+            border: 1px solid var(--ColorBorder) !important;
         }
         
         /* Background of "ニコニコ動画はサイバー攻撃の影響で縮小営業中です。"*/
@@ -213,13 +257,13 @@
         }
         .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#fff{
             background: var(--SeekColorBuffer) !important;
-            opacity: 0.5 !important;
+            opacity: 1.0 !important;
         }
         .pos_relative.h_4px.bg_\\#333.cursor_pointer>.bg_\\#007cff{
             background: var(--SeekColorProgress) !important;
         }
         
-        /* Button bule color */
+        /* Button blue color */
         .bg_\\#007cff{
             background: var(--ColorButton) !important;
         }
@@ -229,6 +273,20 @@
         }
         .bg_\\#555>.bg_\\#007cff{
             background: var(--ColorVolumeOver) !important;
+        }
+        
+        /* comment box border */
+        .border-b_2px_solid_\\#dadada{
+            border-bottom: 1px solid var(--ColorBorder) !important;
+        }
+        .border-t_2px_solid_\\#dadada{
+            border-top: 1px solid var(--ColorBorder) !important;
+        }
+        .border-r_2px_solid_\\#dadada{
+            border-right: 1px solid var(--ColorBorder) !important;
+        }
+        .border-l_2px_solid_\\#dadada{
+            border-left: 1px solid var(--ColorBorder) !important;
         }
         
         /* Loading */
@@ -279,4 +337,158 @@
             text-decoration: none;
         }
     }
+}
+@-moz-document url-prefix("https://ext.live.nicovideo.jp/rekari/") {
+    if userColor{
+        .content-block img.banner{
+            filter: invert(livePlayerImageInvert) !important;
+        }
+    }
+    else{
+        .content-block img.banner{
+            filter: invert(90%) !important;
+        }
+    }
+
+}
+@-moz-document url-prefix("https://nicoft.io/external/tmp_re_kari") {
+    
+    :root{
+        --ColorBackground: #121212;
+        --NicoftSecondColorBackground: #1a1a1a;
+        
+        --ColorText: #c2c2c2;
+        --NicoftSecondColorText: #9c9c9c;
+        --NicoftThirdColorText: #7d7d7d;
+
+        --ColorBorder : #676767;
+        --ColorLink: #c2c2c2;
+    }
+    
+    
+    if userColor {
+        
+        body {
+            background: colorBackground !important;
+            color : colorText !important;
+            border: thicknessBorder solid colorBorder !important;
+        }
+        
+        /* Link */
+        if underlineLink{
+            .css-e7yp3y > a{
+                text-decoration: underline !important;
+            }
+        }
+        else{
+            .css-e7yp3y > a{
+                text-decoration: none !important;
+            }
+        }
+        if hoverUnderlineLink{
+            .css-e7yp3y > a:hover{
+                text-decoration: underline !important;
+            }
+        }
+        else{
+            .css-e7yp3y > a:hover{
+                text-decoration: none !important;
+            }
+        }
+        a {
+            color: colorLink;
+        }
+
+        
+        /* button */
+        .css-13ywgjq{
+            color: nicoftSecondColorText !important;
+            background-color: colorBackground !important;
+            border: 1px solid colorBorder !important;
+            box-shadow: rgba(darken(colorBackground, 10), .2)  0px 4px 8px;
+        }
+        
+        /* SalesStart */
+        .css-q2s76z{
+            background-color: nicoftSecondColorBackground !important;
+        }
+        .css-16d7rs4 {
+            color: nicoftSecondColorText !important;
+        }
+        .css-i51zus{
+            color: nicoftSecondColorText !important;  
+        }
+        
+        /* item name */
+        .css-a4xif8{
+            color: nicoftSecondColorText !important;
+        }
+        
+        /* user avator box */
+        .css-168tqqu{
+            background-color: colorBackground !important;
+            box-shadow: rgba(darken(colorBackground, 5), .5)  0px 2px 8px;
+        }
+        .css-qkq2lo{
+            color: nicoftSecondColorText !important;
+        }
+        .css-jm696t{
+            color: nicoftThirdColorText !important;
+        }
+    }
+    else{
+        
+        body {
+            background: var(--ColorBackground) !important;
+            color : var(--ColorText) !important;
+            border: 1px solid var(--ColorBorder) !important;
+        }
+        
+        /* Link */
+        a {
+            color: var(--ColorLink);
+        }
+        .css-e7yp3y > a{
+            text-decoration: underline !important;
+        }
+        .css-e7yp3y > a:hover{
+            text-decoration: none !important;
+        }
+        
+        /* button */
+        .css-13ywgjq{
+            color: var(--NicoftSecondColorText) !important;
+            background-color: var(--ColorBackground) !important;
+            border: 1px solid var(--ColorBorder) !important;
+            box-shadow: rgba(0, 0, 0, .2)  0px 4px 8px;
+        }
+        
+        /* SalesStart */
+        .css-q2s76z{
+            background-color: var(--NicoftSecondColorBackground) !important;
+        }
+        .css-16d7rs4 {
+            color: var(--NicoftSecondColorText) !important;
+        }
+        .css-i51zus{
+            color: var(--NicoftSecondColorText) !important;  
+        }
+        
+        /* item name */
+        .css-a4xif8{
+            color: var(--NicoftSecondColorText) !important;
+        }
+        
+        /* user avator box */
+        .css-168tqqu{
+            background-color: var(--ColorBackground) !important;
+            box-shadow: rgba(10, 10, 10, .5)  0px 2px 8px;
+        }
+        .css-qkq2lo{
+            color: var(--NicoftSecondColorText) !important;
+        }
+        .css-jm696t{
+            color: var(--NicoftThirdColorText) !important;
+        }
+    }  
 }
